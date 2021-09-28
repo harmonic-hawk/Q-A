@@ -1,12 +1,12 @@
 // non-relational database - MongoDB
 
-// set character limit, type is important
+// set character limit, type
 
 const questionSchema = new mongoose.Schema({
   product_id: String,
   results: [
     {
-      question_id: String, // number?
+      question_id: String,
       question_body: {
         type: String, required: true, unique: true, maxLength: 1000,
       },
@@ -14,8 +14,8 @@ const questionSchema = new mongoose.Schema({
       asker_name: {
         type: String, required: true, unique: true, maxLength: 20,
       },
-      question_helpfulness: String, // number? 1~10?
-      reported: Boolean, // separate schema for reported?
+      question_helpfulness: String,
+      reported: Boolean,
     },
   ],
 },
@@ -24,24 +24,23 @@ const questionSchema = new mongoose.Schema({
   });
 
 const answerSchema = new mongoose.Schema({
-  // number? linked to question
   question: String,
-  page: Number, // number?
-  count: Number, // number?
+  page: Number,
+  count: Number,
   results: [
     {
-      answer_id: Number, // number?
+      answer_id: Number,
       body: {
         type: String, required: true, unique: true, maxLength: 1000,
       },
       date: String,
       answerer_name: {
         type: String, required: true, unique: true, maxLength: 20,
-      }, // character limit, required input
-      helpfulness: Number, // number? set limit 1~10?
+      },
+      helpfulness: Number,
       photos: [
         {
-          id: String, // number? id?
+          id: String,
         },
     },
   ],
