@@ -3,3 +3,6 @@
 
 # config.js file
 /server/config.js
+
+# q&a raw data [answers_photos, answers, questions]
+/q&a-data
