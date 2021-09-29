@@ -2,12 +2,10 @@
 
 -- set character limit, type is important
 
-CREATE TABLE products (
-  id INT UNIQUE NOT NULL,
-  PRIMARY KEY (id)
-)
+-- import csv files
 
 CREATE TABLE questions (
+  product_id INT UNIQUE NOT NULL,
   id INT UNIQUE NOT NULL,
   body VARCHAR(1000) NOT NULL,
   -- 2018-01-04T00:00:00.000Z
@@ -36,7 +34,7 @@ CREATE TABLE answers (
 
 CREATE TABLE photos (
   id INT UNIQUE NOT NULL,
-  url VARCHAR(300) NOT NULL,
+  url VARCHAR(2048) NOT NULL,
   PRIMARY KEY (id)
   FOREIGN KEY (answer_id)
     REFERENCES answers (id)

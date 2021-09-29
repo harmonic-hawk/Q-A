@@ -5,7 +5,7 @@
 const questionSchema = new mongoose.Schema({
   // _id auto created
   product_id: String,
-  results: [
+  // results: [
     {
       question_id: String,
       question_body: {
@@ -33,30 +33,21 @@ const answerSchema = new mongoose.Schema({
   question: String,
   page: Number,
   count: Number,
-  results: [
-    {
-      answer_id: Number,
-      body: {
-        type: String, required: true, unique: true, maxLength: 1000,
-      },
-      date: String,
-      answerer_name: {
-        type: String, required: true, unique: true, maxLength: 20,
-      },
-      helpfulness: Number,
-      photos: [
-        {
-          id: String,
-        },
-      },
-     },
-   ],
-   photo_id: {
-     type: Schema.Types.ObjectId,
-     ref: 'Photo'
-   },
+  answer_id: Number,
+  body: {
+    type: String, required: true, unique: true, maxLength: 1000,
+  },
+  date: String,
+  answerer_name: {
+    type: String, required: true, unique: true, maxLength: 20,
+  },
+  helpfulness: Number,
+  photo_id: {
+  type: Schema.Types.ObjectId,
+    ref: 'Photo'
+  },
   {
-    timestamps: true,
+  timestamps: true,
   }};
 )
 
