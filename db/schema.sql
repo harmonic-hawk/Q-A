@@ -1,10 +1,13 @@
 -- relational database MySQL
--- set character limit, type is important
--- import csv files
--- open mysql
+-- start mysql
 -- mysql -u root -p
 -- load schema to mysql
 -- mysql -u root -p < schema.sql
+-- show databases;
+-- use qa;
+-- show tables;
+-- describe questions/answers/photos;
+-- select * from questions/answers/photos;
 
 DROP DATABASE IF EXISTS qa;
 CREATE DATABASE qa;
