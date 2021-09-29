@@ -59,7 +59,6 @@ const answerSchema = new mongoose.Schema({
 )
 
 const photoSchema = new mongoose.Schema({
-  id: Number,
   url: String,
   // thumbnail url
 })
