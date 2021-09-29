@@ -18,10 +18,14 @@ const questionSchema = new mongoose.Schema({
       reported: Boolean,
     },
   ],
-},
+  answer_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Answer'
+  }
   {
     timestamps: true,
-  });
+  };
+})
 
 const answerSchema = new mongoose.Schema({
   question: String,
@@ -42,17 +46,29 @@ const answerSchema = new mongoose.Schema({
         {
           id: String,
         },
-    },
-  ],
-},
+      },
+     },
+   ],
+   photo_id: {
+     type: Schema.Types.ObjectId,
+     ref: 'Photo'
+   },
   {
     timestamps: true,
-  });
+  }};
+)
+
+const photoSchema = new mongoose.Schema({
+  id: Number,
+  url: String,
+  // thumbnail url
+})
 
 const Question = mongoose.model('Question', questionSchema);
-const Answer = mongoose.model('Question', answerSchema);
+const Answer = mongoose.model('Answer', answerSchema);
+const Photo = mongoose.model('Photo', photoSchema);
 
-module.exports = { Question, Answer };
+module.exports = { Question, Answer, Photo };
 
 ////////////////////////////////////////////////////////////////////////////////
 // GET /qa/questions
