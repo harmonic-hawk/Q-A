@@ -15,7 +15,7 @@ const questionSchema = new mongoose.Schema({
       asker_name: {
         type: String, required: true, unique: true, maxLength: 20,
       },
-      question_helpfulness: String,
+      question_helpfulness: Number,
       reported: Boolean,
     },
   ],
