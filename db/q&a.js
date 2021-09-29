@@ -3,6 +3,7 @@
 // set character limit, type
 
 const questionSchema = new mongoose.Schema({
+  // _id auto created
   product_id: String,
   results: [
     {
@@ -28,6 +29,7 @@ const questionSchema = new mongoose.Schema({
 })
 
 const answerSchema = new mongoose.Schema({
+  // _id auto created
   question: String,
   page: Number,
   count: Number,
@@ -59,6 +61,7 @@ const answerSchema = new mongoose.Schema({
 )
 
 const photoSchema = new mongoose.Schema({
+  // _id auto created
   url: String,
   // thumbnail url
 })
