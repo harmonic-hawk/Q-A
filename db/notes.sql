@@ -18,9 +18,14 @@
 -- ALTER TABLE [table_name] ADD [new_column_name] [type]
 -- ALTER TABLE questions ADD newdate DATETIME;
 
+-- ALTER TABLE answers ADD newdate DATETIME;
+
+
 -- convert unix time from date_written to newdate
 -- UPDATE [table_name] SET [new_column_name]=FROM_UNIXTIME([old_column_name]/1000)
 -- UPDATE questions SET newdate=from_unixtime(date_written/1000);
+
+-- UPDATE answers SET newdate=from_unixtime(date_written/1000);
 
 
 -----------------------------------------------------------------------------------------
