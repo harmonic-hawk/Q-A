@@ -1,31 +1,22 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql');
-const router = require('./routes.js'); // router imported here
-// const path = require('path');
+const db = require('../db');
+// console.log(db);
 
 const PORT = 5000;
 const app = express();
 
-const connection = mysql.createPool({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root',
-  database : 'qa'
-});
+app.use(express.json())
 
-// app.use(express.json());
+app.get('/qa/questions/:product_id', db.getQuestions);
+app.get('/qa/questions/:question_id/answers', db.getAnswers);
+app.post('/qa/questions', db.createQuestion);
+app.post('/qa/answers', db.createAnswer);
+app.put('/qa/questions/:question_id/helpful', db.markQuestionAsHelpful);
+app.put('qa/questions/:question_id/report', db.reportQuestion);
+app.put('/qa/answers/:answer_id/helpful', db.markAnswerAsHelpful);
+app.put('qa/answers/:answer_id/report', db.reportAnswer);
 
-app.use('/', router);
-// app.use(express.static('client/public'));
 
-// app.use('/api', router);
-
-// app.get('*', (req, res) => {
-//   res.send('Hello from the server!');
-  // res.sendFile(path.join(__dirname, '../client/public/index.html'));
-  // app.use(express.static('client/public'));
-// });
 app.listen(PORT, () => {
   console.log(`Server listening at localhost:${PORT}!`);
 });
