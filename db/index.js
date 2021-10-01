@@ -61,21 +61,25 @@ const createAnswer = () => {
 const markQuestionAsHelpful = (req, res) => {
   const question_id = req.params.question_id;
   // console.log('question_id', question_id);
-  res.status(200).send('mark question as helpful success');
+  res.status(200).send('mark question helpful success');
 }
 
-const reportQuestion = () => {
-
+const reportQuestion = (req, res) => {
+  const question_id = req.params.question_id;
+  // console.log('question_id', question_id);
+  res.status(200).send('report question success');
 }
 
 const markAnswerAsHelpful = (req, res) => {
   const answer_id = req.params.answer_id;
   // console.log('answer_id', answer_id);
-  res.status(200).send('mark answer as helpful success');
+  res.status(200).send('mark answer helpful success');
 }
 
-const reportAnswer = () => {
-
+const reportAnswer = (req, res) => {
+  const answer_id = req.params.answer_id;
+  // console.log('answer_id', answer_id);
+  res.status(200).send('report answer success');
 }
 
 // connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
