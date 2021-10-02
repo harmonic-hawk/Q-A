@@ -109,11 +109,6 @@ const reportAnswer = (req, res) => {
   res.status(200).send('report answer success');
 }
 
-// connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-//   if (error) throw error;
-//   console.log('working query - The solution is: ', results[0].solution);
-// });
-
 module.exports = {
   getQuestions,
   getAnswers,
