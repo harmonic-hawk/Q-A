@@ -65,9 +65,24 @@ const createQuestion = (req, res) => {
     }
   })
 }
-'/qa/questions/:id/answers'
-const createAnswer = (req, res) => {
 
+const createAnswer = (req, res) => {
+  const stringified_question_id = JSON.stringify(req.params);
+  const id = JSON.parse(stringified_question_id);
+  const question_id = id.question_id;
+  const body = req.body.body;
+  const answerer_name = req.body.answerer_name;
+  const answerer_email = req.body.answerer_email;
+  // const photos = req.body.photos;
+  const query = `INSERT INTO answers (question_id, body, date_written, answerer_name, answerer_email, reported, helpful, newdate) VALUES (${question_id}, '${body}', UNIX_TIMESTAMP(NOW()), '${answerer_name}', '${answerer_email}', 0, 0, CURRENT_TIMESTAMP())`;
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.log('unable to add new answer', error);
+    } else {
+      console.log('added new answer');
+      res.status(200).json(results);
+    }
+  })
 }
 
 const markQuestionAsHelpful = (req, res) => {

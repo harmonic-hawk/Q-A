@@ -2,10 +2,7 @@ DROP DATABASE IF EXISTS qa;
 CREATE DATABASE qa;
 USE QA;
 
--- id,product_id,body,date_written,asker_name,asker_email,reported,helpful
--- 1,1,"What fabric is the top made of?",1595884714409,"yankeelover","first.last@gmail.com",0,1
-
-CREATE TABLE IF NOT EXISTS  questions (
+CREATE TABLE IF NOT EXISTS questions (
   id INT AUTO_INCREMENT NOT NULL,
   product_id INT NOT NULL,
   body VARCHAR(1000) NOT NULL,
@@ -17,14 +14,6 @@ CREATE TABLE IF NOT EXISTS  questions (
   reported BOOLEAN NOT NULL,
   PRIMARY KEY (id)
 );
-
--- id,question_id,body,date_written,answerer_name,answerer_email,reported,helpful
--- 1,36,"Supposedly suede, but I think its synthetic",1599958385988,"sillyguy","first.last@gmail.com",0,1
-
--- ERROR 1206 (HY000): The total number of locks exceeds the lock table size
--- SET GLOBAL innodb_buffer_pool_size=402653184;
-
--- show warnings limit 10; => query immediately after warning message
 
 CREATE TABLE IF NOT EXISTS answers (
   id INT AUTO_INCREMENT NOT NULL,
