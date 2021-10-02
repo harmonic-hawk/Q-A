@@ -114,9 +114,18 @@ const markAnswerAsHelpful = (req, res) => {
 }
 
 const reportAnswer = (req, res) => {
-  const answer_id = req.params.answer_id;
-  // console.log('answer_id', answer_id);
-  res.status(200).send('report answer success');
+  const stringified_answer_id = JSON.stringify(req.params);
+  const id = JSON.parse(stringified_answer_id);
+  const answer_id = id.answer_id;
+  const query = `UPDATE answers SET reported=1 WHERE id=${answer_id}`;
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.log('unable to report answer', error);
+    } else {
+      console.log('answer reported');
+      res.status(200).json(results);
+    }
+  })
 }
 
 module.exports = {
