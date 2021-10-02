@@ -86,10 +86,18 @@ const createAnswer = (req, res) => {
 }
 
 const markQuestionAsHelpful = (req, res) => {
-  const question_id = req.params.question_id;
-  // console.log('question_id', question_id);
-  const query = 'UPDATE '
-  res.status(200).send('mark question helpful success');
+  const stringified_question_id = JSON.stringify(req.params);
+  const id = JSON.parse(stringified_question_id);
+  const question_id = id.question_id;
+  const query = `UPDATE questions SET helpful=helpful+1 WHERE id=${question_id}`;
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.log('unable to mark question helpful', error);
+    } else {
+      console.log('mark question helpful success');
+      res.status(200).json(results);
+    }
+  })
 }
 
 const reportQuestion = (req, res) => {
