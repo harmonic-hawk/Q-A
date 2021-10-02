@@ -88,13 +88,25 @@ const createAnswer = (req, res) => {
 const markQuestionAsHelpful = (req, res) => {
   const question_id = req.params.question_id;
   // console.log('question_id', question_id);
+  const query = 'UPDATE '
   res.status(200).send('mark question helpful success');
 }
 
+// /qa/questions/:question_id/report
 const reportQuestion = (req, res) => {
-  const question_id = req.params.question_id;
+  const stringified_question_id = JSON.stringify(req.params);
+  const id = JSON.parse(stringified_question_id);
+  const question_id = id.question_id;
   // console.log('question_id', question_id);
-  res.status(200).send('report question success');
+  const query = `UPDATE questions SET reported=1 WHERE id=${question_id}`;
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.log('unable to add new answer', error);
+    } else {
+      console.log('added new answer');
+      res.status(200).json(results);
+    }
+  })
 }
 
 const markAnswerAsHelpful = (req, res) => {

@@ -62,3 +62,5 @@ INSERT INTO questions (product_id, body, date_written, asker_name, asker_email, 
 -- SET GLOBAL innodb_buffer_pool_size=402653184;
 
 -- show warnings limit 10; => query immediately after warning message
+
+UPDATE questions SET reported=1 WHERE id=3518969;
