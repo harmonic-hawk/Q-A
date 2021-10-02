@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root',
-  database : 'qa'
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'qa'
 });
 
 connection.connect((err) => {
@@ -28,7 +28,7 @@ const getQuestions = (req, res) => {
     if (error) {
       console.log('unable to select all questions', error);
     } else {
-      res.status(200).json({product_id: product_id, results: results});
+      res.status(200).json({ product_id: product_id, results: results });
       console.log('able to select all questions');
     }
   })
@@ -73,16 +73,45 @@ const createAnswer = (req, res) => {
   const body = req.body.body;
   const answerer_name = req.body.answerer_name;
   const answerer_email = req.body.answerer_email;
-  // const photos = req.body.photos;
+  const photos = req.body.url;
+
   const query = `INSERT INTO answers (question_id, body, date_written, answerer_name, answerer_email, reported, helpful, newdate) VALUES (${question_id}, '${body}', UNIX_TIMESTAMP(NOW()), '${answerer_name}', '${answerer_email}', 0, 0, CURRENT_TIMESTAMP())`;
   connection.query(query, (error, results) => {
     if (error) {
       console.log('unable to add new answer', error);
     } else {
       console.log('added new answer');
-      res.status(200).json(results);
+      res.status(200).json();
     }
   })
+  // access last added row in answers table for answer id if photos url length is greater than 0
+  if (photos.length > 0) {
+    const getAnswerId = () => {
+      const answer_id_query = `SELECT id FROM answers ORDER BY id DESC LIMIT 1`;
+      return new Promise((resolve, reject) => {
+        connection.query(answer_id_query, (error, data) => {
+          const stringified_answer_id = JSON.stringify(data[0]);
+          const id = JSON.parse(stringified_answer_id);
+          const answer_id = id.id;
+          if (error) {
+            return reject(error)
+          };
+          resolve(answer_id)
+        })
+      })
+    }
+    getAnswerId().then(answer_id => {
+      const photo_query = `INSERT INTO photos (answer_id, url) VALUES (${answer_id}, '${photos}')`;
+        connection.query(photo_query, (error, results) => {
+          if (error) {
+            console.log('add photo fail', error);
+          } else {
+            console.log('added new photo');
+            res.status(200).json();
+          }
+        })
+    })
+  }
 }
 
 const markQuestionAsHelpful = (req, res) => {

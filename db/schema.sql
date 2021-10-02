@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS qa;
-CREATE DATABASE qa;
+-- DROP DATABASE IF EXISTS qa;
+-- CREATE DATABASE qa;
 USE QA;
 
 CREATE TABLE IF NOT EXISTS questions (
@@ -31,11 +31,8 @@ CREATE TABLE IF NOT EXISTS answers (
   FOREIGN KEY (question_id) REFERENCES questions (id)
 );
 
--- id,answer_id,url
--- 1,5,"https://images.unsplash.com/photo-1530519729491-aea5b51d1ee1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"
-
 CREATE TABLE IF NOT EXISTS photos (
-  id INT UNIQUE NOT NULL,
+  id INT AUTO_INCREMENT NOT NULL,
   answer_id INT NOT NULL,
   url VARCHAR(2048) NOT NULL,
   PRIMARY KEY (id),
