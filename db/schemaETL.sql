@@ -1,5 +1,6 @@
 LOAD DATA LOCAL INFILE '/Users/robinjeng/Downloads/hr-sfo137-project-catwalk-qa/Q-A/q&a-data/questions.csv' INTO TABLE questions
 FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 

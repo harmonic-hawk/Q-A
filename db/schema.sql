@@ -6,12 +6,13 @@ USE QA;
 -- 1,1,"What fabric is the top made of?",1595884714409,"yankeelover","first.last@gmail.com",0,1
 
 CREATE TABLE IF NOT EXISTS  questions (
-  id INT UNIQUE NOT NULL,
+  id INT AUTO_INCREMENT NOT NULL,
   product_id INT NOT NULL,
   body VARCHAR(1000) NOT NULL,
   date_written BIGINT NOT NULL,
   -- date_written DATETIME,
   asker_name VARCHAR(30) NOT NULL,
+  asker_email VARCHAR(40) NOT NULL,
   helpful INT NOT NULL,
   reported BOOLEAN NOT NULL,
   PRIMARY KEY (id)
@@ -26,13 +27,13 @@ CREATE TABLE IF NOT EXISTS  questions (
 -- show warnings limit 10; => query immediately after warning message
 
 CREATE TABLE IF NOT EXISTS answers (
-  id INT UNIQUE NOT NULL,
+  id INT AUTO_INCREMENT NOT NULL,
   question_id INT NOT NULL,
   body VARCHAR(500) NOT NULL,
   date_written BIGINT NOT NULL,
   -- date_written DATETIME,
-  answerer_name VARCHAR(20) NOT NULL,
-  email VARCHAR(40) NOT NULL,
+  answerer_name VARCHAR(50) NOT NULL,
+  answerer_email VARCHAR(40) NOT NULL,
   reported BOOLEAN NOT NULL,
   helpful INT NOT NULL,
   -- page INT NOT NULL,

@@ -50,11 +50,11 @@ const getAnswers = (req, res) => {
   })
 }
 
-const createQuestion = () => {
-
+const createQuestion = (req, res) => {
+  
 }
 
-const createAnswer = () => {
+const createAnswer = (req, res) => {
 
 }
 
