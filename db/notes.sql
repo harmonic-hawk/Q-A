@@ -55,7 +55,7 @@
 -- show last row in questions table
 -- SELECT * FROM questions ORDER BY id DESC LIMIT 1;
 
-INSERT INTO questions (product_id, body, date_written, asker_name, asker_email, helpful, reported, newdate) VALUES (1, 'Was this item perhaps a good fit for you?', UNIX_TIMESTAMP(NOW()), 'banana_boat', 'bananaboat@gmail.com', 0, 0, CURRENT_TIMESTAMP());
+-- INSERT INTO questions (product_id, body, date_written, asker_name, asker_email, helpful, reported, newdate) VALUES (1, 'Was this item perhaps a good fit for you?', UNIX_TIMESTAMP(NOW()), 'banana_boat', 'bananaboat@gmail.com', 0, 0, CURRENT_TIMESTAMP());
 
 
 -- ERROR 1206 (HY000): The total number of locks exceeds the lock table size
@@ -63,4 +63,5 @@ INSERT INTO questions (product_id, body, date_written, asker_name, asker_email, 
 
 -- show warnings limit 10; => query immediately after warning message
 
-UPDATE questions SET reported=1 WHERE id=3518969;
+-- UPDATE questions SET reported=1 WHERE id=3518969;
+-- UPDATE answers SET helpful=helpful+1 WHERE id=6879307;
