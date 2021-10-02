@@ -51,9 +51,21 @@ const getAnswers = (req, res) => {
 }
 
 const createQuestion = (req, res) => {
-  
+  const product_id = req.body.product_id;
+  const body = req.body.body;
+  const asker_name = req.body.asker_name;
+  const asker_email = req.body.asker_email;
+  const query = `INSERT INTO questions (product_id, body, date_written, asker_name, asker_email, helpful, reported, newdate) VALUES (${product_id}, '${body}', UNIX_TIMESTAMP(NOW()), '${asker_name}', '${asker_email}', 0, 0, CURRENT_TIMESTAMP())`;
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.log('unable to add new question', error);
+    } else {
+      console.log('added new question');
+      res.status(200).json(results);
+    }
+  })
 }
-
+'/qa/questions/:id/answers'
 const createAnswer = (req, res) => {
 
 }
