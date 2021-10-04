@@ -19,12 +19,10 @@ connection.connect((err) => {
 const getQuestions = (req, res) => {
   const product_id = req.params.product_id;
   console.log('req.params', req.params)
-  console.log('req.params.product_id', req.params.product_id)
   const count = req.query.count;
   const page = req.query.page;
-  const query = `SELECT id, product_id, body, new_date_time, asker_name, helpful, reported FROM questions WHERE product_id=${product_id} LIMIT 1`;
+  const query = `SELECT id, product_id, body, newdate, asker_name, helpful, reported FROM questions WHERE product_id=${product_id} LIMIT 1`;
   connection.query(query, [product_id, count, page], (error, results) => {
-    console.log(results);
     if (error) {
       console.log('unable to select all questions', error);
     } else {
@@ -38,7 +36,7 @@ const getAnswers = (req, res) => {
   const question_id = req.params.question_id;
   const count = req.query.count;
   const page = req.query.page;
-  const query = `SELECT id, question_id, body, new_date_time, answerer_name, helpful, reported FROM answers WHERE question_id=${question_id} LIMIT 1`;
+  const query = `SELECT id, question_id, body, newdate, answerer_name, helpful, reported FROM answers WHERE question_id=${question_id} LIMIT 1`;
   connection.query(query, [question_id, count, page], (error, results) => {
     console.log(results);
     if (error) {
