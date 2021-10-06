@@ -17,9 +17,9 @@ connection.connect((err) => {
   }
 })
 
-// reported not included at the moment
-// product_id on the frontend hardcoded
-// no questions show when reported is added to the query
+// reported currently not included in query
+// product_id hardcoded on the frontend
+// questions won't show with addition of reported
 const getQuestions = (req, res) => {
   const product_id = req.query.product_id;
   const count = req.query.count || 2;
@@ -141,7 +141,27 @@ const createAnswer = (req, res) => {
   const answerer_email = req.body.email;
   const photos = req.body.photos;
 
-  const query = `INSERT INTO answers (question_id, body, date_written, answerer_name, answerer_email, reported, helpful, newdate) VALUES (${question_id}, '${body}', UNIX_TIMESTAMP(NOW()), '${answerer_name}', '${answerer_email}', 0, 0, CURRENT_TIMESTAMP())`;
+  const query = `
+    INSERT INTO
+      answers (
+        question_id,
+        body,
+        date_written,
+        answerer_name,
+        answerer_email,
+        reported,
+        helpful,
+        newdate
+      )
+    VALUES (
+      ${question_id},
+      '${body}',
+      UNIX_TIMESTAMP(NOW()),
+      '${answerer_name}',
+      '${answerer_email}',
+      0,
+      0,
+      CURRENT_TIMESTAMP())`;
   connection.query(query, (error, results) => {
     if (error) {
       console.log('unable to add new answer', error);
@@ -153,7 +173,15 @@ const createAnswer = (req, res) => {
 
   // access last added row in answers table for answer id if photos url length is greater than 0
   const getAnswerId = () => {
-    const answer_id_query = `SELECT id FROM answers ORDER BY id DESC LIMIT 1`;
+    const answer_id_query = `
+      SELECT
+        id
+      FROM
+        answers
+      ORDER BY
+        id
+      DESC LIMIT
+        1`;
     return new Promise((resolve, reject) => {
       connection.query(answer_id_query, (error, data) => {
         const stringified_answer_id = JSON.stringify(data[0]);
@@ -168,7 +196,16 @@ const createAnswer = (req, res) => {
   }
   getAnswerId().then(answer_id => {
     for (let i = 0; i < photos.length; i++) {
-      const photo_query = `INSERT INTO photos (answer_id, url) VALUES (${answer_id}, '${photos[i]}')`;
+      const photo_query = `
+        INSERT INTO
+          photos (
+            answer_id,
+            url
+          )
+        VALUES (
+          ${answer_id},
+          '${photos[i]}'
+        )`;
       connection.query(photo_query, (error, results) => {
         if (error) {
           console.log('add photo fail', error);
