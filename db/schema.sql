@@ -2,6 +2,9 @@
 -- CREATE DATABASE qa;
 USE QA;
 
+-- id,product_id,body,date_written,asker_name,asker_email,reported,helpful
+-- 1,1,"What fabric is the top made of?",1595884714409,"yankeelover","first.last@gmail.com",0,1
+
 CREATE TABLE IF NOT EXISTS questions (
   id INT AUTO_INCREMENT NOT NULL,
   product_id INT NOT NULL,
@@ -38,3 +41,8 @@ CREATE TABLE IF NOT EXISTS photos (
   PRIMARY KEY (id),
   FOREIGN KEY (answer_id) REFERENCES answers (id)
 );
+
+
+-- Add indexing to questions table
+-- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
+-- ALTER TABLE questions ADD INDEX product_index (product_id)

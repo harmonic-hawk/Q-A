@@ -65,3 +65,21 @@
 
 -- UPDATE questions SET reported=1 WHERE id=3518969;
 -- UPDATE answers SET helpful=helpful+1 WHERE id=6879307;
+
+-- SELECT * FROM questions INNER JOIN answers ON questions.id=answers.question_id WHERE questions.product_id=121295;
+-- SELECT asker_name, answerer_name FROM questions INNER JOIN answers ON questions.id=answers.question_id WHERE questions.product_id=121295;
+-- +----------------+----------------+
+-- | asker_name     | answerer_name  |
+-- +----------------+----------------+
+-- | Layne_Klocko59 | Guiseppe81     |
+-- | Cassie32       | Bryce.Littel   |
+-- | Eldridge60     | Natalie.Doyle  |
+-- | Eldridge60     | Viva55         |
+-- | Eldridge60     | Pierre.Sauer62 |
+-- | Karianne1      | Jacquelyn91    |
+-- | Karianne1      | Veda49         |
+-- | Karianne1      | Randy_Walsh    |
+-- | Flavio_Batz    | Sarina14       |
+-- | Flavio_Batz    | Jaqueline59    |
+-- +----------------+----------------+
+

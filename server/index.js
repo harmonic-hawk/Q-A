@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json())
 
-app.get('/qa/questions/:product_id', db.getQuestions);
+app.get('/qa/questions', db.getQuestions);
 app.get('/qa/questions/:question_id/answers', db.getAnswers);
 app.post('/qa/questions', db.createQuestion);
 app.post('/qa/questions/:question_id/answers', db.createAnswer);
@@ -19,3 +19,7 @@ app.put('/qa/answers/:answer_id/report', db.reportAnswer);
 app.listen(PORT, () => {
   console.log(`Server listening at localhost:${PORT}!`);
 });
+
+// :question_id => request.params
+// ?question_id => request.query
+// ?question_id=48432&count=5&page=1 for queries

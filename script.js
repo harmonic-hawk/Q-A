@@ -7,15 +7,16 @@ import { sleep, check, group } from 'k6';
 export let options = {
   stages: [
     { duration: '5s', target: 1 }, // below normal load
-    { duration: '10s', target: 10 }, // normal load
-    { duration: '10s', target: 250 }, // around breaking point
+    { duration: '10s', target: 50 }, // normal load
+    { duration: '10s', target: 200 }, // normal load
+    { duration: '10s', target: 400 }, // around breaking point
     { duration: '10s', target: 150 }, // beyond breaking point
     { duration: '10s', target: 20 }, // scale down
   ],
-  // thresholds: {
-  //   http_req_failed: ['rate<0.01'], // errors are less than 1%,
-  //   http_req_duration: ['p(95)<5000'], // 95% of requests should be under 5000
-  // },
+  thresholds: {
+    http_req_failed: ['rate<0.01'], // errors are less than 1%,
+    http_req_duration: ['p(95)<2000'], // 95% of requests should be under 2000
+  },
 };
 const sleep_duration = 1;
 
@@ -41,16 +42,25 @@ export default function () {
     let getQuestions = http.get(`http://localhost:5000/qa/questions/${product_id}`);
     check(getQuestions, {
       'is status 200': (response) => response.status === 200,
-      'is duration < 5000ms': (response) => response.timings.duration < 5000,
+      'is duration < 2000ms': (response) => response.timings.duration < 2000,
     })
     sleep(sleep_duration);
 
     let getAnswers = http.get(`http://localhost:5000/qa/questions/${question_id}/answers`);
     check(getAnswers, {
       'is status 200': (response) => response.status === 200,
-      'is duration < 5000ms': (response) => response.timings.duration < 5000,
+      'is duration < 2000ms': (response) => response.timings.duration < 2000,
     })
     sleep(sleep_duration);
   })
 
 }
+
+  // STAGE 1
+  // stages: [
+  //   { duration: '5s', target: 1 }, // below normal load
+  //   { duration: '10s', target: 10 }, // normal load
+  //   { duration: '10s', target: 250 }, // around breaking point
+  //   { duration: '10s', target: 150 }, // beyond breaking point
+  //   { duration: '10s', target: 20 }, // scale down
+  // ],
