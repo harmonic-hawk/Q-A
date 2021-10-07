@@ -2,9 +2,6 @@
 -- CREATE DATABASE qa;
 USE QA;
 
--- id,product_id,body,date_written,asker_name,asker_email,reported,helpful
--- 1,1,"What fabric is the top made of?",1595884714409,"yankeelover","first.last@gmail.com",0,1
-
 CREATE TABLE IF NOT EXISTS questions (
   id INT AUTO_INCREMENT NOT NULL,
   product_id INT NOT NULL,
@@ -42,27 +39,3 @@ CREATE TABLE IF NOT EXISTS photos (
   FOREIGN KEY (answer_id) REFERENCES answers (id)
 );
 
-
--- Add indexing to questions table for product_id
--- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
--- ALTER TABLE questions ADD INDEX product_index (product_id)
-
--- Add indexing to questions table for id (question id)
--- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
--- ALTER TABLE questions ADD INDEX question_id_index (id)
-
--- Add indexing to answers table for id (question id)
--- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
--- ALTER TABLE answers ADD INDEX question_id_index (id);
-
--- Add indexing to answers table for answerer name
--- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
--- ALTER TABLE answers ADD INDEX answerer_name_index (answerer_name);
-
--- Add indexing to answers table for answerer body
--- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
--- ALTER TABLE answers ADD INDEX answerer_body_index (body);
-
--- Add indexing to questions table for question date
--- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
--- ALTER TABLE questions ADD INDEX question_date_index (question_date);

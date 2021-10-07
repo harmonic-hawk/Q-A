@@ -13,27 +13,55 @@
 -- select * from questions/answers/photos;
 -- select * from questions limit 10;
 
+-- Check data is loaded into file
+-- SELECT * FROM questions ORDER BY id DESC LIMIT 2;
 
--- mysql> INSERT INTO questions VALUES(1,'bananaleaf', 'bananaleaf@gmail.com', 'Was this item perhaps a good fit for you?');
--- ERROR 1136 (21S01): Column count doesn't match value count at row 1
--- mysql> select * from questions order by id desc limit 2;
-
-
--- add new column
+-- add new column for converted date in questions table
 -- ALTER TABLE [table_name] ADD [new_column_name] [type]
--- ALTER TABLE questions ADD newdate DATETIME;
+-- ALTER TABLE questions ADD question_date DATETIME;
 
+-- In questions table, convert unix time in date_written and add to new column question_date
+-- UPDATE [table_name] SET [new_column_name]=FROM_UNIXTIME([old_column_name]/1000)
+-- UPDATE questions SET question_date=from_unixtime(date_written/1000);
+
+-- add new column for converted date in answers table
+-- ALTER TABLE [table_name] ADD [new_column_name] [type]
 -- ALTER TABLE answers ADD newdate DATETIME;
 
-
--- convert unix time from date_written to newdate
+-- In answers table, convert unix time from date_written and add to new column newdate
 -- UPDATE [table_name] SET [new_column_name]=FROM_UNIXTIME([old_column_name]/1000)
--- UPDATE questions SET newdate=from_unixtime(date_written/1000);
-
 -- UPDATE answers SET newdate=from_unixtime(date_written/1000);
 
+-- Alter column names to match front end
+-- ALTER TABLE [table_name] RENAME COLUMN [old_column_name] TO new_column_name
+-- ALTER TABLE questions RENAME COLUMN body TO question_body
+-- ALTER TABLE helpful RENAME COLUMN helpful TO question_helpfulness
+
+-- Indexing 
+-- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
+
+-- Add indexing to questions table for product_id
+-- ALTER TABLE questions ADD INDEX product_index (product_id);
+
+-- Add indexing to questions table for id (question id)
+-- ALTER TABLE questions ADD INDEX question_id_index (id);
+
+-- Add indexing to answers table for id (question id)
+-- ALTER TABLE answers ADD INDEX question_id_index (id);
+
+-- Add indexing to answers table for answerer name
+-- ALTER TABLE answers ADD INDEX answerer_name_index (answerer_name);
+
+-- Add indexing to answers table for answerer body
+-- ALTER TABLE answers ADD INDEX answerer_body_index (body);
+
+-- Add indexing to questions table for question date
+-- ALTER TABLE questions ADD INDEX question_date_index (question_date);
 
 -----------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+-- SAMPLE DATA AND FORMAT FROM FIRST ROW
+
 -- questions sample data & format
 -- id,product_id,body,date_written,asker_name,asker_email,reported,helpful
 -- 1,1,"What fabric is the top made of?",1595884714409,"yankeelover","first.last@gmail.com",0,1
@@ -45,7 +73,9 @@
 -- answers photos sample date & format
 -- id,answer_id,url
 -- 1,5,"https://images.unsplash.com/photo-1530519729491-aea5b51d1ee1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"
-
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+-- OTHER NOTES
 
 -- alter table questions add asker_email varchar(40) not null after asker_name;
 
