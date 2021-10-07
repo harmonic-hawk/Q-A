@@ -39,7 +39,8 @@ export default function () {
     const question_id = Math.round((Math.random() * (question_max - question_min)) + question_min);
     const answer_id = Math.round((Math.random() * (answer_max - answer_min)) + answer_min);
 
-    let getQuestions = http.get(`http://localhost:5000/qa/questions/${product_id}`);
+    // let getQuestions = http.get(`http://localhost:5000/qa/questions/${product_id}`);
+    let getQuestions = http.get(`http://localhost:5000/qa/questions?product_id=${product_id}`);
     check(getQuestions, {
       'is status 200': (response) => response.status === 200,
       'is duration < 2000ms': (response) => response.timings.duration < 2000,

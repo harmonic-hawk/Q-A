@@ -15,7 +15,7 @@ connection.connect((err) => {
   } else {
     console.log('Connected to MySQL')
   }
-})
+});
 
 // reported currently not included in query
 // product_id hardcoded on the frontend

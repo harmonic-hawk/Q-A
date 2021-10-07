@@ -43,6 +43,26 @@ CREATE TABLE IF NOT EXISTS photos (
 );
 
 
--- Add indexing to questions table
+-- Add indexing to questions table for product_id
 -- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
 -- ALTER TABLE questions ADD INDEX product_index (product_id)
+
+-- Add indexing to questions table for id (question id)
+-- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
+-- ALTER TABLE questions ADD INDEX question_id_index (id)
+
+-- Add indexing to answers table for id (question id)
+-- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
+-- ALTER TABLE answers ADD INDEX question_id_index (id);
+
+-- Add indexing to answers table for answerer name
+-- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
+-- ALTER TABLE answers ADD INDEX answerer_name_index (answerer_name);
+
+-- Add indexing to answers table for answerer body
+-- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
+-- ALTER TABLE answers ADD INDEX answerer_body_index (body);
+
+-- Add indexing to questions table for question date
+-- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
+-- ALTER TABLE questions ADD INDEX question_date_index (question_date);
