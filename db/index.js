@@ -58,7 +58,7 @@ const getQuestions = (req, res) => {
       console.log('unable to select all questions', error);
     } else {
       // change answers value to an object
-      res.status(200).json({ product_id: product_id, results: parsedQuestions(results) });
+      res.status(200).json({ product_id: product_id, results: parseQuestions(results) });
       console.log('able to select all questions');
     }
   })
