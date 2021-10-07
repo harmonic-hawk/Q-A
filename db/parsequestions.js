@@ -1,4 +1,4 @@
-const parsedQuestions = (questions) => {
+const parseQuestions = (questions) => {
   // iterate through all the questions and parse answers
   var parsedQuestions = questions.map((question) => {
     // set answers to be the parsed object
@@ -8,4 +8,4 @@ const parsedQuestions = (questions) => {
   return parsedQuestions;
 }
 
-module.exports = parsedQuestions;
+module.exports = parseQuestions;

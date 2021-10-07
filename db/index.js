@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const parsedQuestions = require('./parseQuestions.js');
+const parseQuestions = require('./parseQuestions.js');
 
 const connection = mysql.createConnection({
   host: 'localhost',
