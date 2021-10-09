@@ -2,15 +2,16 @@ const mysql = require('mysql');
 const parseQuestions = require('./parseQuestions.js');
 
 const connection = mysql.createConnection({
-  host: 'localhost',
+  // host: 'localhost',
+  host: '18.219.11.118',
   user: 'root',
-  password: 'root',
+  password: 'password',
   database: 'qa'
 });
 
 connection.connect((err) => {
   if (err) {
-    console.log('error connection: ' + err.stack);
+    console.log('error connection: ' + err);
     return;
   } else {
     console.log('Connected to MySQL')

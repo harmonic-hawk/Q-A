@@ -35,9 +35,9 @@
 -- Alter column names to match front end
 -- ALTER TABLE [table_name] RENAME COLUMN [old_column_name] TO new_column_name
 -- ALTER TABLE questions RENAME COLUMN body TO question_body
--- ALTER TABLE helpful RENAME COLUMN helpful TO question_helpfulness
+-- ALTER TABLE questions RENAME COLUMN helpful TO question_helpfulness
 
--- Indexing 
+-- Indexing
 -- ALTER TABLE [table-name] ADD INDEX [name of column] (indexing column)
 
 -- Add indexing to questions table for product_id
@@ -57,6 +57,9 @@
 
 -- Add indexing to questions table for question date
 -- ALTER TABLE questions ADD INDEX question_date_index (question_date);
+
+-- Add password to mySQL
+-- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '[your-password-here]';
 
 -----------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------
@@ -83,7 +86,7 @@
 -- INSERT INTO questions VALUES(1,'Was this item perhaps a good fit for you?', 'bananaleaf',);
 
 -- show last row in questions table
--- SELECT * FROM questions ORDER BY id DESC LIMIT 1;
+-- SELECT * FROM questions ORDER BY id DESC LIMIT 5;
 
 -- INSERT INTO questions (product_id, body, date_written, asker_name, asker_email, helpful, reported, newdate) VALUES (1, 'Was this item perhaps a good fit for you?', UNIX_TIMESTAMP(NOW()), 'banana_boat', 'bananaboat@gmail.com', 0, 0, CURRENT_TIMESTAMP());
 
